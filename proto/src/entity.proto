@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package cloudstrife;
+option go_package = "github.com/ghn-rs/cloud-strife-user/proto/gen;cloudstrife";
+
+import "core.proto";
+
+message User {
+  int32 id = 1;
+  string username = 2;
+  string password = 3;
+  string email = 4;
+  string role = 5;
+  int32 status = 6;
+  int64 last_login = 7;
+  int64 created_date = 8;
+  int64 updated_date = 9;
+}
+
+message UserRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+  string role = 4;
+  int32 status = 5;
+}
+
+message UserUpdateRequest {
+  int32 id = 1;
+  string username = 2;
+  string email = 3;
+  string role = 4;
+  int32 status = 5;
+}
+
+message UserResponse {
+  core.BaseResponse base = 1;
+  User user = 2;
+}
+
+message UsersResponse {
+  core.BaseResponse base = 1;
+  repeated User users = 2;
+  int32 total_count = 3;
+}

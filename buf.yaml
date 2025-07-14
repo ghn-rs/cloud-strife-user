@@ -1,0 +1,8 @@
+version: v1beta1
+name: github.com/ghn-rs/cloud-strife-user
+build:
+  roots:
+    - proto/src
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/ghn-rs/corelib

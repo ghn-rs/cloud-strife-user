@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package cloudstrife;
+option go_package = "github.com/ghn-rs/cloud-strife-user/proto/gen;cloudstrife";
+
+import "core.proto";
+import "entity.proto";
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (core.GenericResponse);
+  rpc PaginateUser(PaginateUserRequest) returns (UsersResponse);
+  rpc ListUsers(EmptyRequest) returns (UsersResponse);
+  rpc HealthCheck(EmptyRequest) returns (core.GenericResponse);
+}
+
+message CreateUserRequest {
+  core.BaseRequest base = 1;
+  string username = 2;
+  string password = 3;
+  string email = 4;
+  string role = 5;
+  int32 status = 6;
+}
+
+message GetUserRequest {
+  core.BaseRequest base = 1;
+  int32 id = 2;
+}
+
+message UpdateUserRequest {
+  core.BaseRequest base = 1;
+  int32 id = 2;
+  optional string username = 3;
+  optional string email = 4;
+  optional string role = 5;
+  optional int32 status = 6;
+}
+
+message DeleteUserRequest {
+  core.BaseRequest base = 1;
+  int32 id = 2;
+}
+
+message PaginateUserRequest {
+  core.BaseRequest base = 1;
+  int32 page = 2;
+  int32 limit = 3;
+}
+
+message EmptyRequest {
+  core.BaseRequest base = 1;
+}
